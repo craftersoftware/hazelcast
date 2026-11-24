@@ -26,9 +26,9 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.orbitalhq.opencast</groupId>
+        <groupId>org.craftercms.hazelcast</groupId>
         <artifactId>hazelcast-root</artifactId>
-        <version>5.7.0-opencast-1</version>
+        <version>5.7.0-craftercms-1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -105,7 +105,7 @@
             <artifactId>jctools-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast-archunit-rules</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>

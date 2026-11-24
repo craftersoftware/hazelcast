@@ -2,11 +2,7 @@ name: Build
 
 on:
   push:
-    # Branch pushes deploy snapshots to s3://repo.orbitalhq.com/snapshot.
     branches: [ 'master', 'release/**' ]
-    # Release tags, as created by tag-release.sh (e.g. 5.7.0-opencast-1). The tag run
-    # deploys the release to s3://repo.orbitalhq.com/release.
-    tags: [ '[0-9]+.[0-9]+.[0-9]+-opencast-*' ]
   pull_request:
     branches: [ 'master', 'release/**' ]
   workflow_dispatch:
@@ -16,32 +12,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  # A branch run whose pom carries a release (non-SNAPSHOT) version is skipped and
-  # left to the tag run, so a release is only ever deployed once.
-  gate:
-    runs-on: ubuntu-latest
-    outputs:
-      build: ${{ steps.decide.outputs.build }}
-    steps:
-      - uses: actions/checkout@v5
-      - name: Decide whether this run should build
-        id: decide
-        run: |
-          version=$(sed -n 's:.*<version>\(.*\)</version>.*:\1:p' pom.xml | head -1)
-          if [ "${{ github.ref_type }}" == "tag" ] && [ "$version" != "${{ github.ref_name }}" ]; then
-            echo "::error::Tag ${{ github.ref_name }} does not match the pom version ${version}"
-            exit 1
-          fi
-          if [ "${{ github.ref_type }}" != "tag" ] && [[ "$version" != *-SNAPSHOT ]]; then
-            echo "Release version ${version} on a branch run: skipping, the tag run publishes it"
-            echo "build=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "build=true" >> "$GITHUB_OUTPUT"
-          fi
-
   build:
-    needs: gate
-    if: needs.gate.outputs.build == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 240
     env:
@@ -85,21 +56,3 @@ jobs:
           name: surefire-reports
           path: '**/target/surefire-reports/'
           retention-days: 7
-
-      # Branch pushes carry a -SNAPSHOT version, so Maven deploys them to the snapshot
-      # repository; tag runs carry the release version and deploy to the release
-      # repository. Only Apache-licensed modules are published; the others set
-      # maven.deploy.skip.
-      - name: Deploy
-        if: github.event_name != 'pull_request'
-        run: |
-          if [ "${{ github.ref_type }}" == "tag" ]; then
-            # Sources and javadoc jars. The S3 repository does not require signatures.
-            PROFILE_ARGS="-Prelease -Dgpg.skip=true"
-          fi
-          ./mvnw deploy $MVN_CI_ARGS -DskipTests -Dmaven.artifact.threads=16 ${PROFILE_ARGS:-}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # repo.orbitalhq.com is in eu-west-2, as in vyne's deploy.
-          AWS_REGION: eu-west-2

@@ -1,8 +1,9 @@
-# Opencast
+# CrafterCMS Hazelcast
 
-Opencast is Orbital's fork of Hazelcast OSS. Hazelcast doesn't publish patch releases for the
+This is CrafterCMS's fork of Hazelcast OSS. Hazelcast doesn't publish patch releases for the
 open-source edition, so this fork exists only to ship CVE fixes on top of upstream releases.
-It is published as `com.orbitalhq.opencast:*` to `repo.orbitalhq.com`.
+It is published as `org.craftercms.hazelcast:*` (extensions: `org.craftercms.hazelcast.jet:*`) to
+Sonatype Central. Deployment is manual and is not done from CI (see below).
 
 ## The rule: don't deviate from upstream Hazelcast
 
@@ -26,8 +27,10 @@ code change seems unavoidable, stop and ask first.
 - `master` tracks upstream (`upstream` remote: hazelcast/hazelcast).
 - `release/<major>.<minor>` (e.g. `release/5.7`) is cut from the upstream release tag (`v5.7.0`)
   and carries the fork's changes.
-- Versions are `X.Y.Z-opencast-N` (snapshots: `-opencast-N-SNAPSHOT`). Hazelcast parses its own
+- Versions are `X.Y.Z-craftercms-N` (snapshots: `-craftercms-N-SNAPSHOT`). Hazelcast parses its own
   version at runtime, so don't use four-part versions.
-- Branch pushes deploy snapshots; release tags (created by `./tag-release.sh -p <version>`)
-  deploy releases. See `.github/workflows/build.yml`.
+- Release tags are created by `./tag-release.sh -p <version>`. CI (`.github/workflows/build.yml`)
+  only builds and tests; it doesn't deploy. Releases are deployed manually from the tag with
+  `./mvnw clean deploy -Prelease -Penable-maven-central`, using the `central-releases` server
+  credentials in `~/.m2/settings.xml`, as for CrafterCMS mariaDB4j.
 - Keep `com.hazelcast.*` package names and XML namespaces unchanged for compatibility.

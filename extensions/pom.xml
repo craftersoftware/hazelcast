@@ -24,13 +24,13 @@
     <name>hazelcast-jet-extensions</name>
     <description>Hazelcast Jet Extensions</description>
 
-    <groupId>com.orbitalhq.opencast.jet</groupId>
+    <groupId>org.craftercms.hazelcast.jet</groupId>
     <artifactId>hazelcast-jet-extensions</artifactId>
 
     <parent>
-        <groupId>com.orbitalhq.opencast</groupId>
+        <groupId>org.craftercms.hazelcast</groupId>
         <artifactId>hazelcast-root</artifactId>
-        <version>5.7.0-opencast-1</version>
+        <version>5.7.0-craftercms-1</version>
     </parent>
 
     <modules>
@@ -109,21 +109,21 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <version>${project.parent.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <scope>test</scope>
             <version>${project.version}</version>
             <classifier>tests</classifier>
         </dependency>
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast-archunit-rules</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>
@@ -185,7 +185,7 @@
                     </configuration>
                     <dependencies>
                         <dependency>
-                            <groupId>com.orbitalhq.opencast</groupId>
+                            <groupId>org.craftercms.hazelcast</groupId>
                             <artifactId>hazelcast-build-utils</artifactId>
                             <version>${project.version}</version>
                         </dependency>

@@ -28,9 +28,9 @@
     <artifactId>hazelcast-jet-avro</artifactId>
 
     <parent>
-        <groupId>com.orbitalhq.opencast.jet</groupId>
+        <groupId>org.craftercms.hazelcast.jet</groupId>
         <artifactId>hazelcast-jet-extensions</artifactId>
-        <version>5.7.0-opencast-1</version>
+        <version>5.7.0-craftercms-1</version>
     </parent>
 
     <properties>

@@ -24,9 +24,9 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.orbitalhq.opencast</groupId>
+        <groupId>org.craftercms.hazelcast</groupId>
         <artifactId>hazelcast-root</artifactId>
-        <version>5.7.0-opencast-1</version>
+        <version>5.7.0-craftercms-1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -192,7 +192,7 @@
                                 <exclude>aws/test-aws-config*.xml</exclude>
                                 <exclude>azure/test-azure-config*.xml</exclude>
                                 <exclude>gcp/test-gcp-config*.xml</exclude>
-                                <exclude>META-INF/maven/com.orbitalhq.opencast/hazelcast-tpc-engine/**</exclude>
+                                <exclude>META-INF/maven/org.craftercms.hazelcast/hazelcast-tpc-engine/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -298,7 +298,7 @@
                                 </filter>
                                 <filter>
                                     <!-- the tpc-engine pom.xml carries a Hazelcast Community License header; its code is Apache -->
-                                    <artifact>com.orbitalhq.opencast:hazelcast-tpc-engine</artifact>
+                                    <artifact>org.craftercms.hazelcast:hazelcast-tpc-engine</artifact>
                                     <excludes>
                                         <exclude>META-INF/maven/**</exclude>
                                     </excludes>
@@ -613,7 +613,7 @@
     <dependencies>
         <!-- Needed for TPC -->
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast-tpc-engine</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -972,7 +972,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast-archunit-rules</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>

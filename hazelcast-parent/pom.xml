@@ -20,19 +20,19 @@
                       http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.orbitalhq.opencast</groupId>
+    <groupId>org.craftercms.hazelcast</groupId>
     <artifactId>hazelcast-parent</artifactId>
     <packaging>pom</packaging>
-    <version>5.7.0-opencast-1</version>
+    <version>5.7.0-craftercms-1</version>
 
     <name>Hazelcast Parent POM</name>
     <description>Provides a base configuration for Hazelcast Platform builds</description>
     <url>http://www.hazelcast.com/</url>
 
     <scm>
-        <connection>scm:git:git://github.com/hazelcast/hazelcast.git</connection>
-        <developerConnection>scm:git:git@github.com:hazelcast/hazelcast.git</developerConnection>
-        <url>https://github.com/hazelcast/hazelcast/</url>
+        <connection>scm:git:git://github.com/craftercms/hazelcast.git</connection>
+        <developerConnection>scm:git:git@github.com:craftercms/hazelcast.git</developerConnection>
+        <url>https://github.com/craftercms/hazelcast/</url>
     </scm>
 
     <issueManagement>
@@ -100,9 +100,9 @@
         <new.debezium.version>3.1.3.Final</new.debezium.version>
         <grpc.version>1.73.0</grpc.version>
         <hadoop.version>3.4.3</hadoop.version>
-        <jackson.version>3.1.7</jackson.version>
-        <jackson2.version>2.21.7</jackson2.version>
-        <jackson.annotation.version>2.21</jackson.annotation.version>
+        <jackson.version>3.3.0</jackson.version>
+        <jackson2.version>2.23.0</jackson2.version>
+        <jackson.annotation.version>2.23</jackson.annotation.version>
         <jline.version>3.30.9</jline.version>
         <json-surfer.version>0.13</json-surfer.version>
         <jsr107.api.version>1.1.1</jsr107.api.version> <!-- JCache -->
@@ -181,16 +181,15 @@
         <public.api.check.break.build>true</public.api.check.break.build>
     </properties>
 
-    <!-- Deployed via the s3-maven-extension (.mvn/extensions.xml), using the default AWS credentials chain -->
     <distributionManagement>
-        <repository>
-            <id>repo.orbitalhq.com</id>
-            <url>s3://repo.orbitalhq.com/release</url>
-        </repository>
         <snapshotRepository>
-            <id>repo.orbitalhq.com</id>
-            <url>s3://repo.orbitalhq.com/snapshot</url>
+            <id>central-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
         </snapshotRepository>
+        <repository>
+            <id>central-releases</id>
+            <url>https://central.sonatype.com/repository/maven-releases/</url>
+        </repository>
     </distributionManagement>
 
     <dependencyManagement>
@@ -1518,7 +1517,7 @@
                             <extensions>true</extensions>
                             <configuration>
                                 <!-- server id comes from settings.xml -->
-                                <publishingServerId>release-repository</publishingServerId>
+                                <publishingServerId>central-releases</publishingServerId>
                                 <!--
                                 wait until the artifacts are actually published automatically using 'autoPublish'.
                                 the default is `validated` which would then require manual publishing

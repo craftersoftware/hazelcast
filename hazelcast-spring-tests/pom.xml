@@ -23,9 +23,9 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.orbitalhq.opencast</groupId>
+        <groupId>org.craftercms.hazelcast</groupId>
         <artifactId>hazelcast-root</artifactId>
-        <version>5.7.0-opencast-1</version>
+        <version>5.7.0-craftercms-1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -64,13 +64,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast-spring</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>
@@ -89,7 +89,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.orbitalhq.opencast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <scope>test</scope>
             <version>${project.parent.version}</version>
@@ -113,7 +113,7 @@
             <version>${hazelcast-hibernate53.version}</version>
             <scope>test</scope>
             <exclusions>
-                <!-- upstream Hazelcast core; replaced by com.orbitalhq.opencast:hazelcast -->
+                <!-- upstream Hazelcast core; replaced by org.craftercms.hazelcast:hazelcast -->
                 <exclusion>
                     <groupId>com.hazelcast</groupId>
                     <artifactId>hazelcast</artifactId>
@@ -203,7 +203,7 @@
                     <version>${spring.boot4.version}</version>
                     <scope>test</scope>
                     <exclusions>
-                        <!-- upstream Hazelcast core; replaced by com.orbitalhq.opencast:hazelcast -->
+                        <!-- upstream Hazelcast core; replaced by org.craftercms.hazelcast:hazelcast -->
                         <exclusion>
                             <groupId>com.hazelcast</groupId>
                             <artifactId>hazelcast</artifactId>

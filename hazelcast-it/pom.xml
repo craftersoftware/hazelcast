@@ -20,9 +20,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.orbitalhq.opencast</groupId>
+        <groupId>org.craftercms.hazelcast</groupId>
         <artifactId>hazelcast-root</artifactId>
-        <version>5.7.0-opencast-1</version>
+        <version>5.7.0-craftercms-1</version>
     </parent>
 
     <artifactId>hazelcast-it</artifactId>
