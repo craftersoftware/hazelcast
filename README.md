@@ -1,9 +1,9 @@
 # CrafterCMS Hazelcast
 
 This is [CrafterCMS](https://craftercms.org)'s fork of [Hazelcast](https://github.com/hazelcast/hazelcast) OSS. It
-exists only to ship security fixes on top of upstream releases, and is published to Maven Central as
-`org.craftercms.hazelcast:*` (extensions: `org.craftercms.hazelcast.jet:*`). The `com.hazelcast.*` packages are
-unchanged. Report issues with this fork in [craftersoftware/hazelcast](https://github.com/craftersoftware/hazelcast/issues).
+exists only to ship security fixes on top of upstream releases, and will be published to Maven Central as
+`org.craftercms.hazelcast:*`. The Jet extensions (`extensions/`) aren't published (Hazelcast Community License).
+The `com.hazelcast.*` packages are unchanged. Report issues with this fork in [craftersoftware/hazelcast](https://github.com/craftersoftware/hazelcast/issues).
 
 The rest of this file is the upstream Hazelcast README.
 

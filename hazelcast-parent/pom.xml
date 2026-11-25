@@ -30,7 +30,8 @@
     <url>https://github.com/craftersoftware/hazelcast/</url>
 
     <scm>
-        <connection>https://github.com/craftersoftware/hazelcast.git</connection>
+        <connection>scm:git:https://github.com/craftersoftware/hazelcast.git</connection>
+        <developerConnection>scm:git:git@github.com:craftersoftware/hazelcast.git</developerConnection>
         <url>https://github.com/craftersoftware/hazelcast/</url>
     </scm>
 
