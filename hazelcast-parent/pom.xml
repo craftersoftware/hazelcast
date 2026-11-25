@@ -27,17 +27,17 @@
 
     <name>Hazelcast Parent POM</name>
     <description>Provides a base configuration for Hazelcast Platform builds</description>
-    <url>http://www.hazelcast.com/</url>
+    <url>https://github.com/craftersoftware/hazelcast/</url>
 
     <scm>
-        <connection>scm:git:git://github.com/craftercms/hazelcast.git</connection>
-        <developerConnection>scm:git:git@github.com:craftercms/hazelcast.git</developerConnection>
-        <url>https://github.com/craftercms/hazelcast/</url>
+        <connection>scm:git:https://github.com/craftersoftware/hazelcast.git</connection>
+        <developerConnection>scm:git:git@github.com:craftersoftware/hazelcast.git</developerConnection>
+        <url>https://github.com/craftersoftware/hazelcast/</url>
     </scm>
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/hazelcast/hazelcast/issues</url>
+        <url>https://github.com/craftersoftware/hazelcast/issues</url>
     </issueManagement>
 
     <developers>
@@ -51,8 +51,8 @@
     </developers>
 
     <organization>
-        <name>Hazelcast, Inc.</name>
-        <url>http://www.hazelcast.com/</url>
+        <name>CrafterCMS</name>
+        <url>https://craftercms.org</url>
     </organization>
 
     <licenses>

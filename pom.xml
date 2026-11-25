@@ -38,7 +38,7 @@
     <packaging>pom</packaging>
     <name>Hazelcast Root</name>
     <description>Hazelcast In-Memory DataGrid</description>
-    <url>http://www.hazelcast.com/</url>
+    <url>https://github.com/craftersoftware/hazelcast/</url>
 
     <modules>
         <module>hazelcast-parent</module>
@@ -106,9 +106,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/hazelcast/hazelcast.git</connection>
-        <developerConnection>scm:git:git@github.com:hazelcast/hazelcast.git</developerConnection>
-        <url>https://github.com/hazelcast/hazelcast/</url>
+        <connection>scm:git:https://github.com/craftersoftware/hazelcast.git</connection>
+        <developerConnection>scm:git:git@github.com:craftersoftware/hazelcast.git</developerConnection>
+        <url>https://github.com/craftersoftware/hazelcast/</url>
     </scm>
     <developers>
         <developer>
@@ -130,11 +130,12 @@
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/hazelcast/hazelcast/issues</url>
+        <url>https://github.com/craftersoftware/hazelcast/issues</url>
     </issueManagement>
+
     <organization>
-        <name>Hazelcast, Inc.</name>
-        <url>http://www.hazelcast.com/</url>
+        <name>CrafterCMS</name>
+        <url>https://craftercms.org</url>
     </organization>
 
     <build>
