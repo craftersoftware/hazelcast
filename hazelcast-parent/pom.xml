@@ -1504,6 +1504,7 @@
             <!-- USE WITH CAUTION! Switches deployment from JFrog Artifactory to Maven Central for releases -->
             <id>enable-maven-central</id>
             <properties>
+                <maven.deploy.skip>false</maven.deploy.skip>
                 <maven.central.autoReleaseAfterClose>false</maven.central.autoReleaseAfterClose>
                 <deploy.name>Hazelcast ${project.version}</deploy.name>
             </properties>
@@ -1521,6 +1522,7 @@
                                 <!-- Wait for Central to validate the bundle before manual publishing. -->
                                 <waitUntil>validated</waitUntil>
                                 <autoPublish>${maven.central.autoReleaseAfterClose}</autoPublish>
+                                <skipPublishing>${maven.deploy.skip}</skipPublishing>
                                 <checksums>required</checksums>
                                 <deploymentName>Deployment ${deploy.name}</deploymentName>
                             </configuration>
@@ -1531,7 +1533,6 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <inherited>false</inherited>
                     </plugin>
                 </plugins>
             </build>
