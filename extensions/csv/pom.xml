@@ -28,9 +28,9 @@
     <artifactId>hazelcast-jet-csv</artifactId>
 
     <parent>
-        <groupId>com.hazelcast.jet</groupId>
+        <groupId>org.craftercms.hazelcast.jet</groupId>
         <artifactId>hazelcast-jet-extensions</artifactId>
-        <version>5.7.0-SNAPSHOT</version>
+        <version>5.7.0-craftercms-1</version>
     </parent>
 
     <properties>

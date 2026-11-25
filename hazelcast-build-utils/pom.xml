@@ -23,13 +23,15 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.hazelcast</groupId>
+        <groupId>org.craftercms.hazelcast</groupId>
         <artifactId>hazelcast-root</artifactId>
-        <version>5.7.0-SNAPSHOT</version>
+        <version>5.7.0-craftercms-1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <properties>
+        <!-- Not published: build and test infrastructure only -->
+        <maven.deploy.skip>true</maven.deploy.skip>
         <!-- needed for CheckStyle -->
         <main.basedir>${project.parent.basedir}</main.basedir>
 
@@ -89,12 +91,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.hazelcast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.hazelcast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <scope>test</scope>
             <version>${project.parent.version}</version>

@@ -16,13 +16,16 @@
 
 package com.hazelcast.jet.json;
 
+import com.hazelcast.core.HazelcastJsonValue;
+import com.hazelcast.function.FunctionEx;
+import com.hazelcast.jet.json.impl.JacksonJrFilteringExtension;
+import com.hazelcast.jet.json.impl.JsonUtilImpl;
+import com.hazelcast.jet.pipeline.Sources;
 import tools.jackson.core.JacksonException;
 import tools.jackson.core.json.JsonFactory;
 import tools.jackson.core.json.JsonReadFeature;
 import tools.jackson.jr.annotationsupport.JacksonAnnotationExtension;
 import tools.jackson.jr.ob.JSON;
-import com.hazelcast.core.HazelcastJsonValue;
-import com.hazelcast.jet.pipeline.Sources;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -60,10 +63,12 @@ public final class JsonUtil {
 
     static {
         JsonFactory jf = JsonFactory.builder()
-                                    .enable(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER)
-                                    .enable(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS)
-                                    .build();
-        JSON.Builder builder = JSON.builder(jf).enable(JSON.Feature.ACCEPT_CASE_INSENSITIVE_PROPERTIES);
+                .enable(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER)
+                .enable(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS)
+                .build();
+        JSON.Builder builder = JSON.builder(jf)
+                .register(new JacksonJrFilteringExtension())
+                .enable(JSON.Feature.ACCEPT_CASE_INSENSITIVE_PROPERTIES);
         try {
             Class.forName("com.fasterxml.jackson.annotation.JacksonAnnotation", false, JsonUtil.class.getClassLoader());
             builder.register(JacksonAnnotationExtension.std);
@@ -86,6 +91,9 @@ public final class JsonUtil {
 
     /**
      * Converts a JSON string to an object of the given type.
+     * {@link #toBean(Class)} is a more secure alternative.
+     *
+     * @see #toBean(Class)
      */
     @Nullable
     public static <T> T beanFrom(@Nonnull String jsonString, @Nonnull Class<T> type) throws IOException {
@@ -94,6 +102,32 @@ public final class JsonUtil {
         } catch (JacksonException e) {
             throw new IOException(e);
         }
+    }
+
+    /**
+     * Secure parser of JSON string to given type that rejects dangerous types.
+     * This method should be used in
+     * {@link com.hazelcast.jet.pipeline.GeneralStage#map(FunctionEx)} and other
+     * similar cases instead of plain inline {@link #beanFrom(String, Class)}
+     * lambda or method reference.
+     *
+     * <p>
+     * Example usage:
+     * <pre>{@code
+     * stage.map(JsonUtil.toBean(MyDto.class))
+     * }</pre>
+     *
+     * @param type target type
+     * @param <T> target type
+     * @return JSON parsing serializable function
+     *
+     * @implNote This method is optimized and checks the type only once after creation
+     *
+     * @since 5.7
+     */
+    @Nonnull
+    public static <T> FunctionEx<String, T> toBean(@Nonnull Class<T> type) {
+        return JsonUtilImpl.toBean(type);
     }
 
     /**

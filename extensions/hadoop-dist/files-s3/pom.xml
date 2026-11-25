@@ -28,8 +28,8 @@
 
     <parent>
         <artifactId>hazelcast-jet-hadoop-dist</artifactId>
-        <groupId>com.hazelcast.jet</groupId>
-        <version>5.7.0-SNAPSHOT</version>
+        <groupId>org.craftercms.hazelcast.jet</groupId>
+        <version>5.7.0-craftercms-1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

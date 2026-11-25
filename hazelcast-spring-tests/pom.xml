@@ -23,18 +23,29 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.hazelcast</groupId>
+        <groupId>org.craftercms.hazelcast</groupId>
         <artifactId>hazelcast-root</artifactId>
-        <version>5.7.0-SNAPSHOT</version>
+        <version>5.7.0-craftercms-1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <properties>
+        <!-- Not published: build and test infrastructure only -->
+        <maven.deploy.skip>true</maven.deploy.skip>
         <!-- needed for CheckStyle -->
         <main.basedir>${project.parent.basedir}</main.basedir>
     </properties>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <!-- Hazelcast Community License XSDs: test classpath only, never packaged (see src/hcl-xsd/README.md) -->
+            <testResource>
+                <directory>${project.basedir}/../hazelcast-spring/src/hcl-xsd</directory>
+            </testResource>
+        </testResources>
         <plugins>
 
             <plugin>
@@ -53,13 +64,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.hazelcast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.hazelcast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast-spring</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>
@@ -78,7 +89,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.hazelcast</groupId>
+            <groupId>org.craftercms.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <scope>test</scope>
             <version>${project.parent.version}</version>
@@ -101,6 +112,13 @@
             <artifactId>hazelcast-hibernate53</artifactId>
             <version>${hazelcast-hibernate53.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <!-- upstream Hazelcast core; replaced by org.craftercms.hazelcast:hazelcast -->
+                <exclusion>
+                    <groupId>com.hazelcast</groupId>
+                    <artifactId>hazelcast</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.hibernate.orm</groupId>
@@ -184,6 +202,13 @@
                     <artifactId>spring-boot-hazelcast</artifactId>
                     <version>${spring.boot4.version}</version>
                     <scope>test</scope>
+                    <exclusions>
+                        <!-- upstream Hazelcast core; replaced by org.craftercms.hazelcast:hazelcast -->
+                        <exclusion>
+                            <groupId>com.hazelcast</groupId>
+                            <artifactId>hazelcast</artifactId>
+                        </exclusion>
+                    </exclusions>
                 </dependency>
             </dependencies>
         </profile>
